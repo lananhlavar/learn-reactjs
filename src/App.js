@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
         <p>
-          Lan Anh
+          Lan Anh xinh 
         </p>
     </div>
   );
