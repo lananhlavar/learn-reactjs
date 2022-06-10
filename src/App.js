@@ -1,12 +1,10 @@
-
-import './App.css';
-
+import TodoFeature from'./features/Todo'
+import React from "react";
 function App() {
   return (
     <div className="App">
-        <p>
-          Lan Anh xinh xinh xinh 1265
-        </p>
+        <TodoFeature/>
+
     </div>
   );
 }
