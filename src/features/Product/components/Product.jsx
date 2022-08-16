@@ -1,20 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Skeleton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { STATIC_HOST } from 'constants/index';
+import { THUMBNAIL_PLACEHOLDER } from 'constants/index';
 
 Product.propTypes = {
-    product: PropTypes.object,
-    
+  product: PropTypes.object,
 };
 
-function Product({product}) {
-    return (
-        <Box padding={1}>
-            <Skeleton variant="rectangular" width="100%" height={118} />
-            <Typography variant="body2">{product.name}</Typography>
-            <Typography variant="body2">{product.salePrice}- {product.promotionPercent}</Typography>
-        </Box>
-    );
+function Product({ product }) {
+  const thumbnailUrl = product.thumbnail ? `${STATIC_HOST}${product.thumbnail?.url}` : THUMBNAIL_PLACEHOLDER;
+
+  return (
+    <Box padding={1}>
+      <Box padding={1}>
+        <img width=" 100%" src={thumbnailUrl} alt={product.name} />
+      </Box>
+      <Typography variant="body2">{product.name}</Typography>
+      <Typography variant="body2">
+        {product.salePrice}- {product.promotionPercent}
+      </Typography>
+    </Box>
+  );
 }
 
 export default Product;
