@@ -16,7 +16,7 @@ function InputField(props) {
   const { form, name, label, disabled } = props;
   const { formState } = form;
   const { errors } = formState;
-  const hasError = formState.touchedFields[name] && errors[name];
+  const hasError = errors[name];
   return (
     <Controller
       name={name}
@@ -24,7 +24,7 @@ function InputField(props) {
       render={({ field }) => {
         return (
           <TextField
-            margin="normal"
+            margin="dense"
             variant="outlined"
             fullWidth
             label={label}

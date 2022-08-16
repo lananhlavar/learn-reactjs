@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter/index';
 import Header from './components/Header';
+import ProductFeature from './features/Product/index';
 function App() {
   //test call api
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" component={CounterFeature} exact />
         <Route path="/todos" component={TodoFeature} />
         <Route path="/albums" component={AlbumFeature} />
+        <Route path="/products" component={ProductFeature} />
 {/* 
         <Route component={NotFound} /> */}
       </Switch>
