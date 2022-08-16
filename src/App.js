@@ -6,6 +6,7 @@ import AlbumFeature from './features/Album/index';
 import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter/index';
+import Header from './components/Header';
 function App() {
   //test call api
   useEffect(() => {
@@ -20,15 +21,8 @@ function App() {
   }, []);
   return (
     <div className="App">
-      Header
-      <p>
-        <NavLink to="/todos" activeClassName="active-menu">
-          Todos
-        </NavLink>
-      </p>
-      <p>
-        <NavLink to="/albums">Albums</NavLink>
-      </p>
+      <Header/>
+   
       <Switch>
         <Redirect from="home" to="/" exact />
         <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
