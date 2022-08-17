@@ -1,25 +1,15 @@
 import TodoFeature from './features/Todo';
 import React from 'react';
-import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import AlbumFeature from './features/Album/index';
 // import NotFound from './components/NotFound';
-import { useEffect } from 'react';
-import productApi from './api/productApi';
+
 import CounterFeature from './features/Counter/index';
 import Header from './components/Header';
 import ProductFeature from './features/Product/index';
 function App() {
   //test call api
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const params ={
-        _limit: 10
-      }
-      const productList = await productApi.getAll(params);
-      console.log(productList);
-    };
-    fetchProducts();
-  }, []);
+  
   return (
     <div className="App">
       <Header/>

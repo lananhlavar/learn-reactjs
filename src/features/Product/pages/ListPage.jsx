@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Paper, Typography } from '@mui/material';
+import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -21,13 +21,25 @@ const useStyles = makeStyles(theme => ({
 function ListPage(props) {
     const classes = useStyles()
     const [productList, setProductList] = useState([])
+    const [pagination,setPagination] = useState({
+        total:10, 
+        limit:9,
+        page:1,
+    })
+
     const [loading,setLoading] = useState(true)
+    const [filters,setFilters] = useState({
+        _page:1,
+         _limit:9,
+    })
 
     useEffect(() => {
         (async () => {
             try {
-                const {data} = await productApi.getAll({_page:1, _limit:10})
+                const {data,pagination} = await productApi.getAll(filters)
             setProductList(data)
+            setPagination(pagination)
+            
             } catch (error) {
                 console.log('Fail to fetch product list:',error);
                 
@@ -35,7 +47,14 @@ function ListPage(props) {
             setLoading(false)
         })()
 
-    },[])
+    },[filters])
+    const handlePageChange =(e, page) => {
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            _page:page,
+        }))
+
+    }
     return (
         <Box>
             <Container>
@@ -46,7 +65,13 @@ function ListPage(props) {
                 <Grid className={classes.right} item>
                     
                     <Paper elevation={0}>
-                        {loading ? <ProductSkeletonList/> : <ProductList data={productList}/>}
+                        {loading ? <ProductSkeletonList length={9}/> : <ProductList data={productList}/>}
+                        <Pagination 
+                        count={Math.ceil(pagination.total / pagination.limit)}
+                         page={pagination.page} 
+                         color="primary"
+                         onChange={handlePageChange}
+                         ></Pagination>
                     </Paper>
                     
                 </Grid>
